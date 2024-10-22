@@ -1,0 +1,58 @@
+[tool.ruff]
+target-version = "py310"
+exclude = [".pytest-cache", ".venv", ".ruff_cache", "alembic"]
+line-length = 120
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+pythonpath = "."
+testpaths = [
+    "tests",
+    "integration",
+]
+
+[tool.mypy]
+strict = true
+exclude = ["venv", "alembic"]
+
+[tool.coverage.run]
+branch = true
+omit = [
+  "*/.venv/*",
+  "*/alembic/",
+  "*/tests.py",
+  "*/tests/*.py",
+  "*/*mixins.py",
+  "config.py",
+  "security.py",
+  "main.py"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if settings.DEBUG",
+  "def __str__",
+  "def get_queryset",
+  "raise NotImplementedError"
+]
+omit = [
+  "*/.venv/*",
+  "*/alembic",
+  "*/tests.py",
+  "*/tests/*.py",
+  "*/*mixins.py",
+  "config.py",
+  "security.py",
+  "main.py"
+]
+show_missing = true
+skip_covered = true
+skip_empty = true
+precision = 2
